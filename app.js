@@ -23,13 +23,13 @@ line.init({
 
 
 // サーバーの設定
-var server = app.listen(3000, function(){
+var server = app.listen(process.env.PORT || 3000, function(){ //追加
     console.log("Node.js is listening to PORT:" + server.address().port);
 });
 
 //画面をつくってみよう
-app.get("/", function(req, res, next){ //追加
-    res.render('index.ejs', {text: 'こんにちは'}); //追加
+app.get("/", function(req, res, next){
+    res.render('index.ejs', {text: 'こんにちは'});
 }); //追加
 
 // 具体的な振る舞い
@@ -41,10 +41,11 @@ app.get("/hello", function(req, res, next){
   } else if(hour >= 16) {
     message = 'こんばんは';
   }
-  message += ' \n「' + req.query.text + '」といいましたか？' //削除
-  res.json(message); //'こんにちは'をmessageに書き換え
+  message += ' \n「' + req.query.text + '」といいましたか？'
+  res.json(message);
 });
 
+//ついか
 app.post('/webhook/', line.validator.validateSignature(), (req, res) => {
   // get content from request body
   const promises = req.body.events.map(event => {
