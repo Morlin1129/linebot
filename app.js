@@ -1,8 +1,8 @@
-var express = require("express");
+﻿var express = require("express");
 //追加
 const line = require('node-line-bot-api');
 const bodyParser = require('body-parser');
-//
+//aa
 var app = express();
 
 //画面をつくるためのエンジンを追加
